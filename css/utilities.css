@@ -1,0 +1,50 @@
+
+
+
+.flex-center { display: flex; justify-content: center; align-items: center; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.text-center { text-align: center; }
+.hidden { display: none !important; }
+.px-2 { padding-left: .5rem; padding-right: .5rem; }
+.py-1 { padding-top: .25rem; padding-bottom: .25rem; }
+.mx-1 { margin-left: .25rem; margin-right: .25rem; }
+/* base cell border (example variable) */
+.cell {
+    border: 1px solid var(--muted-2);
+    /* keep other rules as you had */
+}
+
+/* WHEN we want to hide a border between adjacent selected cells */
+.cell.no-top {
+    border-top: none !important;
+}
+.cell.no-bottom {
+    border-bottom: none !important;
+}
+.cell.no-left {
+    border-left: none !important;
+}
+.cell.no-right {
+    border-right: none !important;
+}
+
+/* selected visual */
+.cell.selected {
+    background: #e6f3ff;
+    outline: 2px solid rgba(30,144,255,0.2); /* optional */
+}
+
+/* optional: differentiate outer edges of selection */
+.cell.selected:not(.no-top) {
+    /* top edge of selection */
+    border-top: 2px solid var(--primary);
+}
+.cell.selected:not(.no-left) {
+    border-left: 2px solid var(--primary);
+}
+.cell.selected:not(.no-right) {
+    border-right: 2px solid var(--primary);
+}
+.cell.selected:not(.no-bottom) {
+    border-bottom: 2px solid var(--primary);
+}

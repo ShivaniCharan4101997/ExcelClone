@@ -1,0 +1,350 @@
+
+/* -----------------------------
+   Layout Grid
+   ----------------------------- */
+.app {
+    height: 100%;
+    display: grid;
+    grid-template-rows: var(--title-bar-h) var(--menu-bar-h) var(--menu-icon-bar-h) var(--formula-bar-h) 1fr var(--sheet-bar-h);
+    grid-template-columns: 1fr;
+}
+
+/* -----------------------------
+   Title Bar
+   ----------------------------- */
+.title-bar {
+    background: var(--primary);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--gap-md);
+    font-weight: 600;
+    box-shadow: var(--shadow-sm);
+}
+
+/* -----------------------------
+   Menu Bar & Items
+   ----------------------------- */
+.menu-bar {
+    background: var(--primary);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--gap-md);
+    gap: var(--gap-md);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+.menu-bar:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.menu-item {
+    padding: 6px 10px;
+    border-radius: var(--radius);
+    transition: var(--transition);
+    cursor: pointer;
+}
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+.menu-item.selected {
+    color: var(--primary);
+    background-color: var(--muted);
+}
+.menu-item.selected:hover {
+    background-color: var(--white);
+    color: var(--primary);
+}
+
+/* -----------------------------
+   Toolbar / Icon Bar
+   ----------------------------- */
+.menu-icon-bar {
+    height: var(--menu-icon-bar-h);
+    display: flex;
+    align-items: center;
+    padding-inline: 16px;
+    background: transparent;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+.menu-icon-bar:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.icon-btn.selected {
+    background: #e0ffe0;
+    border-radius: 4px;
+    border: 1px solid #217346;
+    color: #217346;
+    transition: background 0.2s ease;
+}
+
+
+.icon-btn:hover,.icon-btn.selected {
+    background: rgba(0, 0, 0, 0.12);
+}
+.icon-btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    background: rgba(33, 115, 70, 0.08);
+}
+
+.toolbar-divider {
+    width: 1px;
+    height: 24px;
+    background: var(--muted-2);
+    margin-inline: 6px;
+}
+
+.font-family-selector {
+    width: 150px;
+}
+
+
+/* Formula Bar */
+.formula-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(180deg, #ffffff, #f3f3f3);
+    border-bottom: 1px solid #ccc;
+    height: 36px;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* Selected Cell */
+.formula-editor.selected-cell {
+    min-width: 60px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #f9f9f9;
+    font-weight: 500;
+    padding: 4px 8px;
+    color: #333;
+    user-select: none;
+}
+
+/* Formula Sign (fx) */
+.formula-sign {
+    font-weight: 600;
+    font-family: "Segoe UI", sans-serif;
+    color: #217346; /* Excel green */
+    font-size: 14px;
+    user-select: none;
+}
+
+/* Formula Input Area */
+.formula-editor.formula-input {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    padding: 4px 8px;
+    font-size: 14px;
+    min-height: 24px;
+    overflow-x: auto;
+    outline: none;
+}
+
+.formula-editor.formula-input:focus {
+    border-color: #217346;
+    box-shadow: 0 0 0 1px #21734640;
+}
+
+/* Smooth hover feedback */
+.formula-bar:hover {
+    background: linear-gradient(180deg, #ffffff, #ebebeb);
+    transition: 0.2s ease;
+}
+
+
+
+/* -----------------------------
+   Spreadsheet grid area
+----------------------------- */
+
+.data-container {
+    position: relative;
+    display: grid;
+    grid-template-areas:
+    "selectall colnames"
+    "rownames sheet";
+    grid-template-columns: 40px 1fr;
+    grid-template-rows: 28px 1fr;
+    background: var(--white);
+    border: 1px solid var(--muted-2);
+    overflow: scroll;
+}
+
+/* Select All (top-left corner) */
+.select-all {
+    grid-area: selectall;
+    background: var(--muted);
+    border-right: 1px solid var(--muted-2);
+    border-bottom: 1px solid var(--muted-2);
+    width: 40px;
+    height: 28px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.select-all:hover {
+    background: var(--muted-2);
+}
+
+/* Column Headers (A, B, C...) */
+.column-name-container {
+    grid-area: colnames;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100px;
+    background: var(--muted);
+    border-bottom: 1px solid var(--muted-2);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.column-name {
+    text-align: center;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 28px;
+    border-right: 1px solid var(--muted-2);
+    background: var(--white);
+}
+
+/* Row Headers (1, 2, 3...) */
+.row-name-container {
+    grid-area: rownames;
+    display: grid;
+    grid-auto-rows: 28px;
+    background: var(--muted);
+    border-right: 1px solid var(--muted-2);
+    position: sticky;
+    left: 0;
+    z-index: 5;
+}
+
+.row-name {
+    text-align: center;
+    font-weight: 600;
+    color: var(--text);
+    border-bottom: 1px solid var(--muted-2);
+}
+
+/* Main grid */
+.input-cell-container {
+    grid-area: sheet;
+    overflow: auto;
+    background: var(--white);
+}
+
+.sheet {
+    display: grid;
+    grid-template-columns: repeat(26, 100px);
+    grid-auto-rows: 28px;
+    width: max-content;
+    background: var(--white);
+}
+
+/* Cell styles */
+.cell {
+    border: 1px solid var(--muted-2);
+    padding: 4px 8px;
+    font-size: 0.9rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background: var(--white);
+    transition: background 0.15s ease;
+}
+.cell:hover {
+    background: rgba(33,115,70,0.05);
+}
+.cell.selected {
+    border: 2px solid var(--primary);
+    background: rgba(33,115,70,0.08);
+}
+
+/* Scrollbar styling */
+.input-cell-container::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+.input-cell-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+.input-cell-container::-webkit-scrollbar-track {
+    background: var(--muted);
+}
+
+
+/* -----------------------------
+   Sheet Bar
+   ----------------------------- */
+.sheet-bar {
+    height: var(--sheet-bar-h);
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: var(--gap-sm);
+    padding: 0 var(--gap-md);
+    border-top: 1px solid var(--muted-2);
+    background: var(--muted);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+.sheet-bar:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.sheet-bar .icon-left-scroll,
+.sheet-bar .icon-right-scroll {
+    font-size: 30px;
+    cursor: pointer;
+}
+.sheet-bar .icon-add {
+    color: var(--primary);
+    cursor: pointer;
+
+}
+
+.sheet-tab {
+    padding: 4px 10px;
+    border-radius: var(--radius);
+    background: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+.sheet-tab:hover {
+    background: var(--muted);
+}
+.sheet-tab.selected {
+    border-color: var(--primary);
+    color: var(--primary);
+    box-shadow: inset 0 -2px 0 var(--primary);
+    background: #fafafa;
+}
+
+
+
