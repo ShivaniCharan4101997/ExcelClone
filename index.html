@@ -66,6 +66,11 @@
             <div class="material-icons icon-btn icon-align-center">format_align_center</div>
             <div class="material-icons icon-btn icon-align-right">format_align_right</div>
         </div>
+
+        <input type="color" class="icon-btn text-color-picker">
+        <input type="color" class="icon-btn bg-color-picker">
+        <div class="material-icons icon-btn icon-clear">format_clear</div>
+
     </div>
 
     <!-- formula bar -->
@@ -117,15 +122,17 @@
 
     <!-- sheet bar -->
     <div class="sheet-bar px-2 flex-center">
-        <div class="scroller">
+        <div class="scroller flex-center">
             <div class="material-icons icon-left-scroll">arrow_left</div>
+            <div class="tabs-container flex-center">
+                <div class="menu-item sheet-tab selected">Sheet1</div>
+            </div>
             <div class="material-icons icon-right-scroll">arrow_right</div>
-
         </div>
-        <div class="material-icons icon-add">add_circle</div>
 
-        <div class="menu-item sheet-tab selected">Sheet</div>
+        <div class="material-icons icon-add">add_circle</div>
     </div>
+
 </div>
 <script src="script.js"></script>
 </body>
